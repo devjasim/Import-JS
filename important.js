@@ -382,6 +382,73 @@
 		}
 		
     });
+	
+	
+	// 	for tab content 
+
+	// 	for tabbing 
+
+	(($.fn.tabbing = function (e) {
+  var a = {
+    delayTime: 300,
+  };
+
+  return (
+    (e = e || {}),
+    (a = $.extend(a, e)),
+    this.each(function () {
+      $(this).on("click", function (e) {
+        e.preventDefault();
+
+        var t = 0;
+
+        $(this)
+          .prevAll()
+          .each(function () {
+            t += $(this).width();
+          });
+
+        document.getElementById("myTab").scrollWidth;
+
+        var l = t - ($(this).parent().width() - $(this).width()) / 2;
+
+        l < 0 && (l = 0),
+          $(this).parent().animate(
+            {
+              scrollLeft: l,
+            },
+            a.delayTime
+          );
+      });
+    })
+  );
+}),
+$(".nav-tabs li").tabbing(),
+$(window).resize(function () {
+  var e = $(".tab-panel-full").width(),
+    a = document.getElementById("myTab").scrollWidth;
+
+  parseInt(e) > parseInt(a)
+    ? $("#myTab").css({
+        "justify-content": "center",
+      })
+    : $("#myTab").css({
+        "justify-content": "left",
+      });
+}),
+
+$(document).ready(function () {
+  var e = $(".tab-panel-full").width(),
+    a = document.getElementById("myTab").scrollWidth;
+
+  parseInt(e) > parseInt(a)
+    ? $("#myTab").css({
+        "justify-content": "center",
+      })
+    : $("#myTab").css({
+        "justify-content": "left",
+      });
+}))
 
 
 })(jQuery);
